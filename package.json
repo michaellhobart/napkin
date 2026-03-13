@@ -22,7 +22,7 @@
     "access": "public"
   },
   "bin": {
-    "napkin": "./dist/cli.js"
+    "napkin": "dist/cli.js"
   },
   "type": "module",
   "files": [

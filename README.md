@@ -50,14 +50,14 @@ npm link
 
 2. **Generate a REST service**:
    ```bash
-   # Generate a service with an explicit name
+   # Zero-config (random resource and random ID)
+   napkin generate service
+   
+   # Explicit resource, random ID
+   napkin generate service products
+   
+   # Explicit name
    napkin generate service users --name user-api
-   
-   # Generate a service with a random ID (e.g., books-a1b2)
-   napkin generate service books
-   
-   # Generate a service with a specific schema
-   napkin generate service books --schema "title, author, year"
    ```
    This scaffolds a lean REST API in `services/<name>/` using only native Node.js modules. It includes an in-memory CSV storage provider for quick prototyping.
 

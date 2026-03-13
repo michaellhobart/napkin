@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export const generateServiceCommand = new Command('service')
   .description('Generate a lean REST service')
-  .argument('<resource>', 'Name of the resource (e.g., users)')
+  .argument('[resource]', 'Name of the resource (e.g., users)')
   .option('-s, --schema <fields>', 'Comma-separated list of fields for the resource')
   .option('-n, --name <name>', 'Custom name for the service')
   .action(async (resource, options) => {
@@ -21,7 +21,8 @@ export const generateServiceCommand = new Command('service')
       process.exit(1);
     }
 
-    const serviceId = options.name || `${resource}-${Math.random().toString(36).substring(2, 6)}`;
+    const effectiveResource = resource || `resource-${Math.random().toString(36).substring(2, 6)}`;
+    const serviceId = options.name || Math.random().toString(36).substring(2, 10);
     const serviceDir = path.join(cwd, 'services', serviceId);
 
     if (await fs.pathExists(serviceDir)) {
@@ -290,6 +291,6 @@ export class Storage {
       await fs.writeFile(configPath, yaml.dump(config));
     }
 
-    console.log(`Successfully generated ${resource} service as "${serviceId}" at ${serviceDir}`);
+    console.log(`Successfully generated ${effectiveResource} service as "${serviceId}" at ${serviceDir}`);
   });
 
