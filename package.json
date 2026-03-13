@@ -1,0 +1,29 @@
+{
+  "name": "@michaellhobart/napkin",
+  "version": "0.1.0",
+  "description": "Turn your architecture diagrams into runnable sketches using Docker Compose",
+  "bin": {
+    "napkin": "./dist/cli.js"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.24",
+    "@types/fs-extra": "^11.0.4",
+    "@types/js-yaml": "^4.0.9"
+  }
+}
