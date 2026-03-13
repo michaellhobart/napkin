@@ -6,7 +6,6 @@
   "description": "Turn your architecture diagrams into runnable sketches using Docker Compose",
   "keywords": [
     "architecture",
-    "docker-compose",
     "sketching",
     "prototyping",
     "generator"
