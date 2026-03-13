@@ -4,22 +4,21 @@
 
 Architecture reviews often produce diagrams that describe systems as discrete components (web app, API, workers, queues, DB, external deps). However, validating those designs usually requires scaffolding a real system—which is slow and distracts from the design intent.
 
-**Napkin** is a CLI + generator that turns architecture primitives into low-fidelity, runnable surfaces using Docker Compose. It allows teams to quickly test assumptions about integration boundaries, data flow, failure modes, and deployment topology.
+**Napkin** is a CLI + generator that turns architecture primitives into low-fidelity, runnable surfaces. It allows teams to quickly test assumptions about integration boundaries, data flow, failure modes, and deployment topology.
 
 ## Key Features
 
 - **Runnable Sketches**: Generate minimal, functional components (UI, API, Store, Worker) from a simple manifest.
-- **Composition First**: Wire nodes together based on edges in the manifest, producing a runnable system via Docker Compose.
+- **Composition First**: Wire nodes together based on edges in the manifest, producing a runnable system.
 - **Low Fidelity, High Value**: Focus on surfaces and contracts, not production implementations. Validate sync vs async interactions and failure modes early.
 - **Fault Injection**: Built-in support for latency and error rate simulation to test system resilience.
-- **Docker Compose Glue**: Leverages Docker Compose for consistent networking, startup, and environment management.
 
 ## Getting Started
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or later)
-- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
+- [Docker](https://www.docker.com/) (required for running generated containers)
 
 ### Installation
 
@@ -51,8 +50,11 @@ npm link
 
 2. **Generate a REST service**:
    ```bash
-   # Generate a simple service
-   napkin generate service users
+   # Generate a service with an explicit name
+   napkin generate service users --name user-api
+   
+   # Generate a service with a random ID (e.g., books-a1b2)
+   napkin generate service books
    
    # Generate a service with a specific schema
    napkin generate service books --schema "title, author, year"
@@ -65,8 +67,6 @@ npm link
    npm start
    ```
 
-4. **Wired up (Docker Compose)**:
-   *Coming Soon: Generate the docker-compose.yaml from your manifest.*
 
 ## Documentation
 
