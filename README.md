@@ -39,16 +39,28 @@ npm link
    ```
    This creates a `napkin.yaml` file in your current directory, which serves as the source of truth for your architecture sketch.
 
-2. **Add components** (Coming Soon):
+2. **Generate a REST service**:
    ```bash
-   napkin add api backend
-   napkin add store db
+   # Generate a simple service
+   napkin generate service users
+   
+   # Generate a service with a specific schema
+   napkin generate service books --schema "title, author, year"
+   ```
+   This scaffolds a lean REST API in `services/<name>/` using only native Node.js modules. It includes an in-memory CSV storage provider for quick prototyping.
+
+3. **Start a service**:
+   ```bash
+   cd services/books
+   npm start
    ```
 
-3. **Start the system** (Coming Soon):
-   ```bash
-   napkin up
-   ```
+4. **Wired up (Docker Compose)**:
+   *Coming Soon: Generate the docker-compose.yaml from your manifest.*
+
+## Documentation
+
+For more detailed information on the project structure and design, see [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 ## Design Principles
 
