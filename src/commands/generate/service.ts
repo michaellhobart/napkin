@@ -9,8 +9,9 @@ const __dirname = path.dirname(__filename);
 
 export const generateServiceCommand = new Command('service')
   .description('Generate a lean REST service')
-  .argument('<resource>', 'Name of the resource (e.g., users)')
+  .argument('[resource]', 'Name of the resource (e.g., users)')
   .option('-s, --schema <fields>', 'Comma-separated list of fields for the resource')
+  .option('-n, --name <name>', 'Custom name for the service')
   .action(async (resource, options) => {
     const cwd = process.cwd();
     const configPath = path.join(cwd, 'napkin.yaml');
@@ -20,7 +21,9 @@ export const generateServiceCommand = new Command('service')
       process.exit(1);
     }
 
-    const serviceDir = path.join(cwd, 'services', resource);
+    const effectiveResource = resource || `resource-${Math.random().toString(36).substring(2, 6)}`;
+    const serviceId = options.name || Math.random().toString(36).substring(2, 10);
+    const serviceDir = path.join(cwd, 'services', serviceId);
 
     if (await fs.pathExists(serviceDir)) {
       console.error(`Error: Service directory ${serviceDir} already exists.`);
@@ -253,7 +256,7 @@ export class Storage {
 `;
 
     const packageJsonContent = `{
-  "name": "${resource}-service",
+  "name": "${serviceId}-service",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -274,12 +277,12 @@ export class Storage {
       config.services = [];
     }
 
-    if (!config.services.find((s: any) => s.id === resource)) {
+    if (!config.services.find((s: any) => s.id === serviceId)) {
       config.services.push({
-        id: resource,
+        id: serviceId,
         kind: 'api',
         flavor: 'native-http',
-        path: `services/${resource}`,
+        path: `services/${serviceId}`,
         fields: allFields,
         ports: [
           `300${config.services.length}:3000`
@@ -288,6 +291,6 @@ export class Storage {
       await fs.writeFile(configPath, yaml.dump(config));
     }
 
-    console.log(`Successfully generated ${resource} service at ${serviceDir}`);
+    console.log(`Successfully generated ${effectiveResource} service as "${serviceId}" at ${serviceDir}`);
   });
 
