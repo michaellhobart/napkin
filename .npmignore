@@ -1,0 +1,13 @@
+src
+docs
+tsconfig.json
+tsup.config.ts
+.github
+brain
+.gitignore
+package-lock.json
+VISION.md
+ARCHITECTURE.md
+implementation_plan.md
+task.md
+walkthrough.md

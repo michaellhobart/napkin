@@ -23,9 +23,19 @@ Architecture reviews often produce diagrams that describe systems as discrete co
 
 ### Installation
 
-During development, you can link the CLI locally:
+Install the CLI globally via npm:
 
 ```bash
+npm install -g @michaellhobart/napkin
+```
+
+### Development Setup
+
+If you want to contribute or build from source:
+
+```bash
+git clone https://github.com/michaellhobart/napkin.git
+cd napkin
 npm install
 npm run build
 npm link
@@ -71,3 +81,14 @@ For more detailed information on the project structure and design, see [docs/ARC
 ## License
 
 MIT
+
+## Distribution
+
+This package is published to the npm registry under the `@michaellhobart` scope.
+
+### Publishing
+
+To publish a new version:
+1. Update the version in `package.json`.
+2. Push a new tag: `git tag v0.x.x && git push origin v0.x.x`.
+3. The GitHub Action will automatically build and publish the package to npm.
