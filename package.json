@@ -1,7 +1,26 @@
 {
   "name": "@michaellhobart/napkin",
   "version": "0.1.0",
+  "author": "Michael Hobart",
+  "license": "MIT",
   "description": "Turn your architecture diagrams into runnable sketches using Docker Compose",
+  "keywords": [
+    "architecture",
+    "sketching",
+    "prototyping",
+    "generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaellhobart/napkin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/michaellhobart/napkin/issues"
+  },
+  "homepage": "https://github.com/michaellhobart/napkin#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "napkin": "./dist/cli.js"
   },
