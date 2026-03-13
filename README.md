@@ -23,8 +23,12 @@ Architecture reviews often produce diagrams that describe systems as discrete co
 
 ### Installation
 
+During development, you can link the CLI locally:
+
 ```bash
-npm install -g @michaellhobart/napkin
+npm install
+npm run build
+npm link
 ```
 
 ### Usage
@@ -33,15 +37,15 @@ npm install -g @michaellhobart/napkin
    ```bash
    napkin init
    ```
+   This creates a `napkin.yaml` file in your current directory, which serves as the source of truth for your architecture sketch.
 
-2. **Add components**:
+2. **Add components** (Coming Soon):
    ```bash
    napkin add api backend
    napkin add store db
-   napkin add ui web
    ```
 
-3. **Start the system**:
+3. **Start the system** (Coming Soon):
    ```bash
    napkin up
    ```
